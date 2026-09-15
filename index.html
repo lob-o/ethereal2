@@ -81,25 +81,47 @@ a{color:inherit;text-decoration:none}
 .verreel:hover{opacity:1}
 .verreel svg{width:8px;fill:var(--naranja);flex:none}
 
-/* ---------- indice de obras ---------- */
+/* ---------- obras ---------- */
 .obras{position:relative;z-index:2;background:var(--gris)}
+
+/* banda con video */
 .obra{
-  position:relative;display:grid;grid-template-columns:1fr auto;
-  align-items:baseline;gap:20px;
-  padding:32px var(--borde) 36px;border-bottom:1px solid var(--hilo);
+  position:relative;display:block;overflow:hidden;
+  height:62svh;min-height:360px;
+  background:var(--hueco);
+  border-bottom:1px solid var(--hilo);
 }
-.obra::before{
-  content:"";position:absolute;left:0;top:0;bottom:0;width:0;
-  background:var(--naranja);transition:width .16s ease;
+.obra video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.obra::after{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to top,rgba(30,32,35,.82),transparent 52%);
 }
-.obra:hover::before,.obra:focus-within::before{width:5px}
+.obra .etiqueta{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;
+  display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:20px;
+  padding:0 var(--borde) 28px;
+}
 .obra h2{
   font-family:var(--grot);
   font-variation-settings:"opsz" 96,"wdth" 100,"wght" 600;
-  font-size:clamp(32px,8vw,120px);line-height:.96;letter-spacing:-.03em;
+  font-size:clamp(32px,7.4vw,112px);line-height:.96;letter-spacing:-.03em;
 }
 .obra .estado{font-size:11px;color:var(--tenue);white-space:nowrap}
-.obra.piloto .estado{color:var(--naranja)}
+.obra .barra{
+  position:absolute;left:0;top:0;bottom:0;width:0;z-index:3;
+  background:var(--naranja);transition:width .16s ease;
+}
+.obra:hover .barra,.obra:focus-visible .barra{width:5px}
+
+/* fila seca, sin material */
+.obra.seca{
+  height:auto;min-height:0;background:none;
+  padding:30px var(--borde) 34px;
+}
+.obra.seca::after{display:none}
+.obra.seca .etiqueta{position:static;padding:0}
+.obra.seca .estado{color:var(--tenue)}
+.obra.seca.piloto .estado{color:var(--naranja)}
 
 /* ---------- studio ---------- */
 .studio{
@@ -157,7 +179,9 @@ a{color:inherit;text-decoration:none}
   .nav b{font-size:13px}
   .nav a,.dato,.ficha dt,.ficha dd,.obra .estado,.verreel{font-size:10px}
   .logotipo{font-size:clamp(36px,15.5vw,180px);margin-bottom:16px}
-  .obra{padding:18px var(--borde) 22px;grid-template-columns:1fr;gap:8px}
+  .obra{height:52svh;min-height:280px}
+  .obra .etiqueta{grid-template-columns:1fr;gap:6px;padding-bottom:20px}
+  .obra.seca{padding:22px var(--borde) 26px}
   .studio{grid-template-columns:1fr;gap:40px;padding:68px var(--borde) 62px}
   .ficha{align-self:start}
   .contacto{padding-top:62px;gap:40px}
@@ -205,11 +229,35 @@ a{color:inherit;text-decoration:none}
 <main>
 
   <section class="obras" id="work">
-    <a class="obra" href="#contact"><h2>Dogs</h2><span class="estado">Animated feature / Development</span></a>
-    <a class="obra" href="#contact"><h2>Imperfectas</h2><span class="estado">Animated feature / Development</span></a>
-    <a class="obra piloto" href="#contact"><h2>[ Vertical 01 ]</h2><span class="estado">Series / Pilot</span></a>
-    <a class="obra" href="#contact"><h2>[ Vertical 02 ]</h2><span class="estado">Series / Development</span></a>
-    <a class="obra" href="#contact"><h2>[ Vertical 03 ]</h2><span class="estado">Series / Development</span></a>
+
+    <a class="obra" href="#contact">
+      <video src="dogs.mp4" poster="dogs.jpg" muted loop playsinline preload="none"></video>
+      <span class="barra" aria-hidden="true"></span>
+      <div class="etiqueta"><h2>Dogs</h2><span class="estado">Animated feature / Development</span></div>
+    </a>
+
+    <a class="obra" href="#contact">
+      <video src="imperfectas.mp4" poster="imperfectas.jpg" muted loop playsinline preload="none"></video>
+      <span class="barra" aria-hidden="true"></span>
+      <div class="etiqueta"><h2>Imperfectas</h2><span class="estado">Animated feature / Development</span></div>
+    </a>
+
+    <a class="obra" href="#contact">
+      <video src="limbo.mp4" poster="limbo.jpg" muted loop playsinline preload="none"></video>
+      <span class="barra" aria-hidden="true"></span>
+      <div class="etiqueta"><h2>Limbo</h2><span class="estado">[ formato ] / Development</span></div>
+    </a>
+
+    <a class="obra seca piloto" href="#contact">
+      <span class="barra" aria-hidden="true"></span>
+      <div class="etiqueta"><h2>[ Vertical 01 ]</h2><span class="estado">Series / Pilot</span></div>
+    </a>
+
+    <a class="obra seca" href="#contact">
+      <span class="barra" aria-hidden="true"></span>
+      <div class="etiqueta"><h2>[ Vertical 02 ]</h2><span class="estado">Series / Development</span></div>
+    </a>
+
   </section>
 
   <section class="studio" id="studio">
@@ -221,6 +269,7 @@ a{color:inherit;text-decoration:none}
       <dt>Founded</dt><dd>2023</dd>
       <dt>Based</dt><dd>Santiago de Chile</dd>
       <dt>Fields</dt><dd>Film, music</dd>
+      <dt>Partners</dt><dd>Heyne &amp; Stambuk</dd>
     </dl>
   </section>
 
@@ -284,6 +333,20 @@ a{color:inherit;text-decoration:none}
     if(campo.value.trim().toLowerCase()===CLAVE){puerta.hidden=true;repro.hidden=false;}
     else{aviso.classList.add('mal');aviso.textContent='Code not recognised.';campo.value='';campo.focus();}
   }
+  // Cada banda arranca al entrar en pantalla y se pausa al salir.
+  // Con preload="none" no se descarga nada hasta que hace falta.
+  var bandas=document.querySelectorAll('.obra video');
+  if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var vigia=new IntersectionObserver(function(entradas){
+      entradas.forEach(function(e){
+        var v=e.target;
+        if(e.isIntersecting){var p=v.play(); if(p&&p.catch) p.catch(function(){});}
+        else{v.pause();}
+      });
+    },{threshold:.25});
+    bandas.forEach(function(v){vigia.observe(v);});
+  }
+
   entrar.addEventListener('click',probar);
   campo.addEventListener('keydown',function(e){if(e.key==='Enter')probar();});
   cerrar.addEventListener('click',apagar);
