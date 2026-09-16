@@ -1,3 +1,31 @@
+
+/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Index · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +63,7 @@ body{
 :focus-visible{outline:1px solid var(--naranja);outline-offset:4px}
 a{color:inherit;text-decoration:none}
 .dato{font-family:var(--mono);font-size:11px;letter-spacing:0;color:var(--tenue)}
-
+ 
 /* ---------- navegacion ---------- */
 .nav{
   position:fixed;top:0;left:0;right:0;z-index:30;
@@ -48,7 +76,7 @@ a{color:inherit;text-decoration:none}
 .nav ul{display:flex;gap:20px;list-style:none}
 .nav a{font-size:11px;opacity:.6}
 .nav a:hover,.nav a:focus-visible{opacity:1;color:var(--naranja)}
-
+ 
 /* ---------- imagen principal ---------- */
 .pantalla{
   position:relative;height:100svh;min-height:520px;
@@ -61,7 +89,7 @@ a{color:inherit;text-decoration:none}
   position:absolute;inset:0;z-index:1;
   background:linear-gradient(to bottom,rgba(40,42,44,.45),transparent 38%,rgba(40,42,44,.75));
 }
-
+ 
 .firma{position:relative;z-index:2;align-self:end;padding:0 var(--borde)}
 .logotipo{
   display:flex;justify-content:space-between;
@@ -80,7 +108,7 @@ a{color:inherit;text-decoration:none}
   color:rgba(255,255,255,.88);
 }
 .identidad span{display:block;white-space:nowrap}
-
+ 
 .verreel{
   display:inline-flex;align-items:center;gap:8px;
   font-family:var(--mono);font-size:11px;
@@ -88,10 +116,10 @@ a{color:inherit;text-decoration:none}
 }
 .verreel:hover{opacity:1}
 .verreel svg{width:8px;fill:var(--naranja);flex:none}
-
+ 
 /* ---------- obras ---------- */
 .obras{position:relative;z-index:2;background:var(--gris)}
-
+ 
 /* banda con video */
 .obra{
   position:relative;display:block;overflow:hidden;
@@ -120,7 +148,7 @@ a{color:inherit;text-decoration:none}
   background:var(--naranja);transition:width .16s ease;
 }
 .obra:hover .barra,.obra:focus-visible .barra{width:5px}
-
+ 
 /* verticales: rotulo a la izquierda, cuadros 9:16 a la derecha */
 .verticales{
   display:grid;grid-template-columns:auto minmax(0,1fr);
@@ -138,19 +166,21 @@ a{color:inherit;text-decoration:none}
 }
 .tarjeta{display:block}
 .retrato{
-  position:relative;aspect-ratio:9/16;background:var(--hueco);overflow:hidden;
+  position:relative;aspect-ratio:9/16;background:var(--hueco);
+  overflow:hidden;border-radius:16px;
 }
 .retrato::before{
   content:"";position:absolute;inset:0;z-index:1;
   background:linear-gradient(to top,rgba(24,26,28,.85),transparent 42%);
 }
-.rotulo-t{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 14px 14px}
+.rotulo-t{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 16px 16px}
 .retrato video{width:100%;height:100%;object-fit:cover;display:block}
 .retrato::after{
-  content:"";position:absolute;inset:0;z-index:3;
-  box-shadow:inset 0 0 0 0 var(--naranja);transition:box-shadow .16s ease;
+  content:"";position:absolute;inset:0;z-index:3;border-radius:16px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.4);
+  transition:box-shadow .16s ease;
 }
-.tarjeta:hover .retrato::after,.tarjeta:focus-visible .retrato::after{box-shadow:inset 0 0 0 3px var(--naranja)}
+.tarjeta:hover .retrato::after,.tarjeta:focus-visible .retrato::after{box-shadow:inset 0 0 0 2px var(--naranja)}
 .tarjeta h3{
   font-family:var(--grot);
   font-variation-settings:"opsz" 40,"wdth" 100,"wght" 600;
@@ -158,7 +188,7 @@ a{color:inherit;text-decoration:none}
 }
 .tarjeta .estado{font-size:11px;color:rgba(255,255,255,.72);display:block}
 .tarjeta.piloto .estado{color:var(--naranja)}
-
+ 
 /* ---------- studio ---------- */
 .studio{
   position:relative;z-index:2;background:var(--blanco);color:#141618;
@@ -174,7 +204,7 @@ a{color:inherit;text-decoration:none}
 .ficha{display:grid;grid-template-columns:auto 1fr;gap:12px 28px;align-self:end}
 .ficha dt{font-size:11px;color:rgba(20,22,24,.55)}
 .ficha dd{font-size:11px}
-
+ 
 /* ---------- contacto ---------- */
 .contacto{
   position:relative;z-index:2;background:var(--gris);
@@ -188,7 +218,7 @@ a{color:inherit;text-decoration:none}
 }
 .correo:hover{color:var(--naranja);border-bottom-color:var(--naranja)}
 .colofon{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-
+ 
 /* ---------- visor del screener ---------- */
 .visor{position:fixed;inset:0;z-index:50;background:rgba(58,61,64,.98);display:grid;grid-template-rows:auto 1fr}
 .visor[hidden]{display:none}
@@ -208,7 +238,7 @@ a{color:inherit;text-decoration:none}
 .aviso.mal{color:var(--naranja)}
 #reproductor{width:100%;height:100%;display:grid;place-items:center}
 #reproductor[hidden]{display:none}
-
+ 
 @media(max-width:760px){
   :root{--borde:16px}
   .nav ul{gap:13px}
@@ -231,7 +261,7 @@ a{color:inherit;text-decoration:none}
 </style>
 </head>
 <body>
-
+ 
 <nav class="nav">
   <b>Ethereal</b>
   <ul>
@@ -240,7 +270,7 @@ a{color:inherit;text-decoration:none}
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
-
+ 
 <header class="pantalla">
   <div class="lecho" aria-hidden="true">
     <!-- Loop mudo de portada. El poster es lo que ven los iPhone en bajo
@@ -248,13 +278,13 @@ a{color:inherit;text-decoration:none}
     <video src="portada.mp4" poster="portada.jpg" autoplay muted loop playsinline preload="metadata"></video>
     <div class="velo"></div>
   </div>
-
+ 
   <div class="firma">
     <h1 class="logotipo" aria-label="Ethereal">
       <span aria-hidden="true">E</span><span aria-hidden="true">T</span><span aria-hidden="true">H</span><span aria-hidden="true">E</span><span aria-hidden="true">R</span><span aria-hidden="true">E</span><span aria-hidden="true">A</span><span aria-hidden="true">L</span>
     </h1>
   </div>
-
+ 
   <div class="rotulo">
     <p class="identidad">
       <span>Entertainment studio, film and music.</span>
@@ -266,37 +296,37 @@ a{color:inherit;text-decoration:none}
     </button>
   </div>
 </header>
-
+ 
 <main>
-
+ 
   <section class="obras" id="work">
-
+ 
     <a class="obra" href="#contact">
       <video src="dogs.mp4" poster="dogs.jpg" autoplay muted loop playsinline preload="metadata"></video>
       <span class="barra" aria-hidden="true"></span>
       <div class="etiqueta"><h2>Dogs</h2><span class="estado">Animated feature / Development</span></div>
     </a>
-
+ 
     <a class="obra" href="#contact">
       <video src="imperfectas.mp4" poster="imperfectas.jpg" autoplay muted loop playsinline preload="metadata"></video>
       <span class="barra" aria-hidden="true"></span>
       <div class="etiqueta"><h2>Imperfectas</h2><span class="estado">Animated feature / Development</span></div>
     </a>
-
+ 
     <a class="obra" href="#contact">
       <video src="limbo.mp4" poster="limbo.jpg" autoplay muted loop playsinline preload="metadata"></video>
       <span class="barra" aria-hidden="true"></span>
       <div class="etiqueta"><h2>Limbo</h2><span class="estado">[ formato ] / Development</span></div>
     </a>
-
+ 
   </section>
-
+ 
   <!-- VERTICALES. Loops de 5 segundos, 9:16, 720 de ancho basta.
        Para pasar a cuatro: repeat(3 a repeat(4 en .serie, y copiar una tarjeta. -->
   <section class="verticales" id="verticals" aria-labelledby="rot-v">
     <h2 id="rot-v">Verticals</h2>
     <div class="serie">
-
+ 
       <a class="tarjeta piloto" href="#contact">
         <div class="retrato">
           <video src="vertical-01.mp4" poster="vertical-01.jpg" autoplay muted loop playsinline preload="metadata"></video>
@@ -306,7 +336,7 @@ a{color:inherit;text-decoration:none}
           </div>
         </div>
       </a>
-
+ 
       <a class="tarjeta" href="#contact">
         <div class="retrato">
           <video src="vertical-02.mp4" poster="vertical-02.jpg" autoplay muted loop playsinline preload="metadata"></video>
@@ -316,7 +346,7 @@ a{color:inherit;text-decoration:none}
           </div>
         </div>
       </a>
-
+ 
       <a class="tarjeta" href="#contact">
         <div class="retrato">
           <video src="vertical-03.mp4" poster="vertical-03.jpg" autoplay muted loop playsinline preload="metadata"></video>
@@ -326,10 +356,10 @@ a{color:inherit;text-decoration:none}
           </div>
         </div>
       </a>
-
+ 
     </div>
   </section>
-
+ 
   <section class="studio" id="studio">
     <div>
       <p>We make entertainment.</p>
@@ -340,9 +370,9 @@ a{color:inherit;text-decoration:none}
       <dt>Fields</dt><dd>Film, music</dd>
     </dl>
   </section>
-
+ 
 </main>
-
+ 
 <footer class="contacto" id="contact">
   <a class="correo" href="mailto:hola@ethereal.film">hola@ethereal.film</a>
   <div class="colofon">
@@ -350,7 +380,7 @@ a{color:inherit;text-decoration:none}
     <span class="dato">Santiago de Chile, 2026</span>
   </div>
 </footer>
-
+ 
 <div class="visor" id="visor" hidden>
   <div class="cabezal">
     <span class="dato">Ethereal, screener 2026</span>
@@ -374,7 +404,7 @@ a{color:inherit;text-decoration:none}
     </div>
   </div>
 </div>
-
+ 
 <script>
 (function(){
   var visor=document.getElementById('visor'),
@@ -385,10 +415,10 @@ a{color:inherit;text-decoration:none}
       campo=document.getElementById('codigo'),
       entrar=document.getElementById('entrar'),
       aviso=document.getElementById('aviso');
-
+ 
   // Filtro de interfaz, NO es seguridad. La proteccion real va en Vimeo.
   var CLAVE='ethereal26';
-
+ 
   abrir.addEventListener('click',function(){
     visor.hidden=false;document.body.style.overflow='hidden';campo.focus();
   });
@@ -405,10 +435,10 @@ a{color:inherit;text-decoration:none}
   // Cada banda arranca al entrar en pantalla y se pausa al salir.
   // Solo se descarga la cabecera hasta que la banda entra en pantalla.
   var bandas=document.querySelectorAll('.obra video, .retrato video');
-
+ 
   // Chrome en Android exige muted como propiedad, no solo como atributo.
   bandas.forEach(function(v){v.muted=true;v.defaultMuted=true;});
-
+ 
   function arrancar(v){
     v.muted=true;
     var p=v.play();
@@ -423,7 +453,7 @@ a{color:inherit;text-decoration:none}
       });
     }
   }
-
+ 
   if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
     var vigia=new IntersectionObserver(function(entradas){
       entradas.forEach(function(e){
@@ -433,7 +463,7 @@ a{color:inherit;text-decoration:none}
     },{threshold:.2});
     bandas.forEach(function(v){vigia.observe(v);});
   }
-
+ 
   entrar.addEventListener('click',probar);
   campo.addEventListener('keydown',function(e){if(e.key==='Enter')probar();});
   cerrar.addEventListener('click',apagar);
@@ -442,3 +472,4 @@ a{color:inherit;text-decoration:none}
 </script>
 </body>
 </html>
+ 
