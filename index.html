@@ -75,10 +75,10 @@ a{color:inherit;text-decoration:none}
 .identidad{
   font-family:var(--mono);
   font-size:clamp(13px,1.35vw,17px);
-  line-height:1.7;letter-spacing:-.01em;
+  line-height:1.55;letter-spacing:-.015em;
   color:rgba(255,255,255,.88);
-  max-width:34ch;
 }
+.identidad span{display:block;white-space:nowrap}
 
 .verreel{
   display:inline-flex;align-items:center;gap:8px;
@@ -185,6 +185,7 @@ a{color:inherit;text-decoration:none}
   .nav ul{gap:13px}
   .nav b{font-size:13px}
   .nav a,.dato,.ficha dt,.ficha dd,.obra .estado,.verreel{font-size:10px}
+  .identidad span{white-space:normal}
   .logotipo{font-size:clamp(36px,15.5vw,180px);margin-bottom:16px}
   .obra{height:52svh;min-height:280px}
   .obra .etiqueta{grid-template-columns:1fr;gap:6px;padding-bottom:20px}
@@ -225,7 +226,10 @@ a{color:inherit;text-decoration:none}
   </div>
 
   <div class="rotulo">
-    <span class="identidad">Entertainment studio. Film and music.<br>Santiago de Chile, since 2023.</span>
+    <p class="identidad">
+      <span>Entertainment studio, film and music.</span>
+      <span>Santiago de Chile, since 2023.</span>
+    </p>
     <button class="verreel" type="button" id="abrir">
       <svg viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0 L10 6 L0 12 Z"/></svg>
       <span>Screener</span>
