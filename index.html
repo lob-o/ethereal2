@@ -120,15 +120,31 @@ a{color:inherit;text-decoration:none}
 }
 .obra:hover .barra,.obra:focus-visible .barra{width:5px}
 
-/* fila seca, sin material */
-.obra.seca{
-  height:auto;min-height:0;background:none;
-  padding:30px var(--borde) 34px;
+/* verticales: par de tarjetas en 9:16 */
+.verticales{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:20px;padding:44px var(--borde) 54px;
+  max-width:860px;
 }
-.obra.seca::after{display:none}
-.obra.seca .etiqueta{position:static;padding:0}
-.obra.seca .estado{color:var(--tenue)}
-.obra.seca.piloto .estado{color:var(--naranja)}
+.tarjeta{display:block}
+.retrato{
+  position:relative;aspect-ratio:9/16;background:var(--hueco);overflow:hidden;
+  margin-bottom:14px;
+}
+.retrato img,.retrato video{width:100%;height:100%;object-fit:cover;display:block}
+.retrato::after{
+  content:"";position:absolute;inset:0;
+  box-shadow:inset 0 0 0 0 var(--naranja);transition:box-shadow .16s ease;
+}
+.tarjeta:hover .retrato::after,.tarjeta:focus-visible .retrato::after{box-shadow:inset 0 0 0 3px var(--naranja)}
+.tarjeta h2{
+  font-family:var(--grot);
+  font-variation-settings:"opsz" 40,"wdth" 100,"wght" 600;
+  font-size:clamp(17px,1.9vw,26px);line-height:1.1;letter-spacing:-.02em;
+  margin-bottom:3px;
+}
+.tarjeta .estado{font-size:11px;color:var(--tenue)}
+.tarjeta.piloto .estado{color:var(--naranja)}
 
 /* ---------- studio ---------- */
 .studio{
@@ -189,7 +205,7 @@ a{color:inherit;text-decoration:none}
   .logotipo{font-size:clamp(36px,15.5vw,180px);margin-bottom:16px}
   .obra{height:52svh;min-height:280px}
   .obra .etiqueta{grid-template-columns:1fr;gap:6px;padding-bottom:20px}
-  .obra.seca{padding:22px var(--borde) 26px}
+  .verticales{padding:32px var(--borde) 40px;gap:12px}
   .studio{grid-template-columns:1fr;gap:40px;padding:68px var(--borde) 62px}
   .ficha{align-self:start}
   .contacto{padding-top:62px;gap:40px}
@@ -259,14 +275,24 @@ a{color:inherit;text-decoration:none}
       <div class="etiqueta"><h2>Limbo</h2><span class="estado">[ formato ] / Development</span></div>
     </a>
 
-    <a class="obra seca piloto" href="#contact">
-      <span class="barra" aria-hidden="true"></span>
-      <div class="etiqueta"><h2>[ Vertical 01 ]</h2><span class="estado">Series / Pilot</span></div>
+  </section>
+
+  <!-- VERTICALES. Cada retrato acepta una de las dos lineas:
+       <img src="vertical-01.jpg" alt="">
+       <video src="vertical-01.mp4" poster="vertical-01.jpg" autoplay muted loop playsinline preload="metadata"></video>
+       Formato 9:16, 720 de ancho basta. -->
+  <section class="verticales" aria-label="Vertical series">
+
+    <a class="tarjeta piloto" href="#contact">
+      <div class="retrato"><img src="vertical-01.jpg" alt=""></div>
+      <h2>[ Vertical 01 ]</h2>
+      <span class="estado">Series / Pilot</span>
     </a>
 
-    <a class="obra seca" href="#contact">
-      <span class="barra" aria-hidden="true"></span>
-      <div class="etiqueta"><h2>[ Vertical 02 ]</h2><span class="estado">Series / Development</span></div>
+    <a class="tarjeta" href="#contact">
+      <div class="retrato"><img src="vertical-02.jpg" alt=""></div>
+      <h2>[ Vertical 02 ]</h2>
+      <span class="estado">Series / Development</span>
     </a>
 
   </section>
@@ -345,7 +371,7 @@ a{color:inherit;text-decoration:none}
   }
   // Cada banda arranca al entrar en pantalla y se pausa al salir.
   // Solo se descarga la cabecera hasta que la banda entra en pantalla.
-  var bandas=document.querySelectorAll('.obra video');
+  var bandas=document.querySelectorAll('.obra video, .retrato video');
 
   // Chrome en Android exige muted como propiedad, no solo como atributo.
   bandas.forEach(function(v){v.muted=true;v.defaultMuted=true;});
