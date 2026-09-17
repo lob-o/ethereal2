@@ -4,7 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ethereal</title>
-<meta name="description" content="Ethereal. Entertainment studio. Film and music. Santiago de Chile.">
+<meta name="description" content="Entertainment studio, film and music. Santiago de Chile, since 2023.">
+
+<!-- Tarjeta al compartir el link. La URL absoluta debe cambiar junto con el dominio. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ethereal">
+<meta property="og:title" content="Ethereal">
+<meta property="og:description" content="Entertainment studio, film and music. Santiago de Chile, since 2023.">
+<meta property="og:url" content="https://ethereal2.vercel.app/">
+<meta property="og:image" content="https://ethereal2.vercel.app/portada.jpg">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1080">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ethereal">
+<meta name="twitter:description" content="Entertainment studio, film and music. Santiago de Chile, since 2023.">
+<meta name="twitter:image" content="https://ethereal2.vercel.app/portada.jpg">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23FF6A1F'/%3E%3Cg fill='%23fff'%3E%3Crect x='9' y='7' width='4' height='18'/%3E%3Crect x='9' y='7' width='14' height='4'/%3E%3Crect x='9' y='14' width='11' height='4'/%3E%3Crect x='9' y='21' width='14' height='4'/%3E%3C/g%3E%3C/svg%3E">
+<meta name="theme-color" content="#46494C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
@@ -67,7 +84,7 @@ a{color:inherit;text-decoration:none}
   display:flex;justify-content:space-between;
   font-family:var(--disp);font-weight:300;
   font-size:clamp(44px,15vw,290px);line-height:.94;letter-spacing:-.005em;
-  margin-bottom:24px;
+  margin:0 -.062em 24px;
   clip-path:inset(0 100% 0 0);
   animation:revelar 1.1s .15s cubic-bezier(.16,.84,.24,1) forwards;
 }
@@ -75,8 +92,8 @@ a{color:inherit;text-decoration:none}
 .rotulo{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;padding:0 var(--borde)}
 .identidad{
   font-family:var(--mono);
-  font-size:clamp(13px,1.35vw,17px);
-  line-height:1.55;letter-spacing:-.015em;
+  font-size:clamp(12px,1.1vw,14px);
+  line-height:1.6;letter-spacing:-.01em;
   color:rgba(255,255,255,.88);
 }
 .identidad span{display:block;white-space:nowrap}
@@ -103,23 +120,38 @@ a{color:inherit;text-decoration:none}
 .obra::after{
   content:"";position:absolute;inset:0;z-index:1;
   background:linear-gradient(to top,rgba(30,32,35,.82),transparent 52%);
+  transition:background .35s ease;
 }
+.obra:hover::after{background:linear-gradient(to top,rgba(30,32,35,.7),transparent 68%)}
 .obra .etiqueta{
   position:absolute;left:0;right:0;bottom:0;z-index:2;
-  display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:20px;
+  display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:6px 20px;
   padding:0 var(--borde) 28px;
+  transition:transform .35s cubic-bezier(.2,.7,.2,1);
 }
+.obra:hover .etiqueta{transform:translateY(-6px)}
+
+/* sinopsis: se despliega al pasar por encima. Si esta vacia, no aparece nada. */
+.sinopsis{
+  grid-column:1 / -1;
+  max-width:58ch;font-size:14px;line-height:1.55;
+  color:rgba(255,255,255,.9);
+  max-height:0;opacity:0;overflow:hidden;
+  transition:max-height .35s ease,opacity .25s ease,margin-top .35s ease;
+}
+.sinopsis:empty{display:none}
+.obra:hover .sinopsis{max-height:6em;opacity:1;margin-top:8px}
 .obra h2{
   font-family:var(--grot);
   font-variation-settings:"opsz" 96,"wdth" 100,"wght" 600;
   font-size:clamp(32px,7.4vw,112px);line-height:.96;letter-spacing:-.03em;
 }
-.obra .estado{font-size:11px;color:var(--tenue);white-space:nowrap}
+.obra .estado{font-size:12px;color:var(--tenue);white-space:nowrap}
 .obra .barra{
   position:absolute;left:0;top:0;bottom:0;width:0;z-index:3;
   background:var(--naranja);transition:width .16s ease;
 }
-.obra:hover .barra,.obra:focus-visible .barra{width:5px}
+.obra:hover .barra{width:5px}
 
 /* verticales: rotulo a la izquierda, cuadros 9:16 a la derecha */
 .verticales{
@@ -143,7 +175,7 @@ a{color:inherit;text-decoration:none}
 }
 .retrato::before{
   content:"";position:absolute;inset:0;z-index:1;
-  background:linear-gradient(to top,rgba(24,26,28,.85),transparent 42%);
+  background:linear-gradient(to top,rgba(24,26,28,.8),transparent 30%);
 }
 .rotulo-t{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 16px 16px}
 .retrato video{width:100%;height:100%;object-fit:cover;display:block}
@@ -152,23 +184,24 @@ a{color:inherit;text-decoration:none}
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.4);
   transition:box-shadow .16s ease;
 }
-.tarjeta:hover .retrato::after,.tarjeta:focus-visible .retrato::after{box-shadow:inset 0 0 0 2px var(--naranja)}
+.tarjeta:hover .retrato::after{box-shadow:inset 0 0 0 2px var(--naranja)}
 .tarjeta h3{
   font-family:var(--grot);
   font-variation-settings:"opsz" 40,"wdth" 100,"wght" 600;
   font-size:clamp(14px,1.5vw,20px);line-height:1.1;letter-spacing:-.02em;margin-bottom:2px;
 }
-.tarjeta .estado{font-size:11px;color:rgba(255,255,255,.72);display:block}
+.tarjeta .estado{font-size:12px;color:rgba(255,255,255,.72);display:block}
 .tarjeta.piloto .estado{color:var(--naranja)}
 
 /* ---------- studio ---------- */
 .studio{
   position:relative;z-index:2;background:var(--blanco);color:#141618;
-  padding:24svh var(--borde) 24svh;
+  padding:24svh var(--borde) 24svh;overflow:hidden;
 }
 .studio p{
   font-family:var(--grot);font-variation-settings:"opsz" 96,"wdth" 100,"wght" 500;
-  font-size:clamp(46px,14.2vw,260px);line-height:.92;letter-spacing:-.05em;
+  font-size:clamp(44px,16.6vw,700px);line-height:.94;letter-spacing:-.042em;
+  white-space:nowrap;margin:0 -.03em;
 }
 
 /* ---------- contacto ---------- */
@@ -209,7 +242,8 @@ a{color:inherit;text-decoration:none}
   :root{--borde:16px}
   .nav ul{gap:13px}
   .nav b{font-size:13px}
-  .nav a,.dato,.obra .estado,.verreel{font-size:10px}
+  .nav a,.dato,.verreel{font-size:10px}
+  .obra .estado,.tarjeta .estado{font-size:11px}
   .identidad span{white-space:normal}
   .logotipo{font-size:clamp(36px,15.5vw,180px);margin-bottom:16px}
   .obra{height:52svh;min-height:280px}
@@ -218,6 +252,9 @@ a{color:inherit;text-decoration:none}
   .serie{gap:8px}
   .studio{padding:18svh var(--borde)}
   .contacto{padding-top:62px;gap:40px}
+}
+@media(hover:none){
+  .sinopsis{max-height:6em;opacity:1;margin-top:8px}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -266,23 +303,33 @@ a{color:inherit;text-decoration:none}
 
   <section class="obras" id="work">
 
-    <a class="obra" href="#contact">
+    <article class="obra">
       <video src="dogs.mp4" poster="dogs.jpg" autoplay muted loop playsinline preload="metadata"></video>
       <span class="barra" aria-hidden="true"></span>
-      <div class="etiqueta"><h2>Dogs</h2><span class="estado">Animated feature / Development</span></div>
-    </a>
+      <div class="etiqueta">
+        <h2>Dogs</h2><span class="estado">Animated feature / Development</span>
+        <!-- sinopsis: una linea. Si la dejas vacia no se muestra nada. -->
+        <p class="sinopsis"></p>
+      </div>
+    </article>
 
-    <a class="obra" href="#contact">
+    <article class="obra">
       <video src="imperfectas.mp4" poster="imperfectas.jpg" autoplay muted loop playsinline preload="metadata"></video>
       <span class="barra" aria-hidden="true"></span>
-      <div class="etiqueta"><h2>Imperfectas</h2><span class="estado">Animated feature / Development</span></div>
-    </a>
+      <div class="etiqueta">
+        <h2>Imperfectas</h2><span class="estado">Animated feature / Development</span>
+        <p class="sinopsis"></p>
+      </div>
+    </article>
 
-    <a class="obra" href="#contact">
+    <article class="obra">
       <video src="limbo.mp4" poster="limbo.jpg" autoplay muted loop playsinline preload="metadata"></video>
       <span class="barra" aria-hidden="true"></span>
-      <div class="etiqueta"><h2>Limbo</h2><span class="estado">[ formato ] / Development</span></div>
-    </a>
+      <div class="etiqueta">
+        <h2>Limbo</h2><span class="estado">Feature film / Development</span>
+        <p class="sinopsis"></p>
+      </div>
+    </article>
 
   </section>
 
@@ -292,35 +339,35 @@ a{color:inherit;text-decoration:none}
     <h2 id="rot-v">Verticals</h2>
     <div class="serie">
 
-      <a class="tarjeta piloto" href="#contact">
+      <article class="tarjeta piloto">
         <div class="retrato">
           <video src="vertical-01.mp4" poster="vertical-01.jpg" autoplay muted loop playsinline preload="metadata"></video>
           <div class="rotulo-t">
-            <h3>[ Vertical 01 ]</h3>
+            <h3>Vertical 01</h3>
             <span class="estado">Series / Pilot</span>
           </div>
         </div>
-      </a>
+      </article>
 
-      <a class="tarjeta" href="#contact">
+      <article class="tarjeta">
         <div class="retrato">
           <video src="vertical-02.mp4" poster="vertical-02.jpg" autoplay muted loop playsinline preload="metadata"></video>
           <div class="rotulo-t">
-            <h3>[ Vertical 02 ]</h3>
+            <h3>Vertical 02</h3>
             <span class="estado">Series / Development</span>
           </div>
         </div>
-      </a>
+      </article>
 
-      <a class="tarjeta" href="#contact">
+      <article class="tarjeta">
         <div class="retrato">
           <video src="vertical-03.mp4" poster="vertical-03.jpg" autoplay muted loop playsinline preload="metadata"></video>
           <div class="rotulo-t">
-            <h3>[ Vertical 03 ]</h3>
+            <h3>Vertical 03</h3>
             <span class="estado">Series / Development</span>
           </div>
         </div>
-      </a>
+      </article>
 
     </div>
   </section>
