@@ -200,7 +200,10 @@ a{color:inherit;text-decoration:none}
 }
 .studio p{
   font-family:var(--grot);font-variation-settings:"opsz" 96,"wdth" 100,"wght" 500;
-  font-size:clamp(44px,16.6vw,700px);line-height:.94;letter-spacing:-.042em;
+  /* el cuerpo se calcula desde el ancho util, no desde el de la ventana,
+     asi la frase llena la linea igual en un monitor que en un telefono */
+  font-size:min(calc((100vw - 2 * var(--borde)) / 5.85),700px);
+  line-height:.94;letter-spacing:-.042em;
   white-space:nowrap;margin:0 -.03em;
 }
 
