@@ -196,16 +196,18 @@ a{color:inherit;text-decoration:none}
 /* ---------- studio ---------- */
 .studio{
   position:relative;z-index:2;background:var(--blanco);color:#141618;
-  padding:24svh var(--borde) 24svh;overflow:hidden;
+  padding:15svh var(--borde) 15svh;overflow:hidden;
 }
 .studio p{
   font-family:var(--grot);font-variation-settings:"opsz" 96,"wdth" 100,"wght" 500;
-  /* el cuerpo se calcula desde el ancho util, no desde el de la ventana,
-     asi la frase llena la linea igual en un monitor que en un telefono */
-  font-size:min(calc((100vw - 2 * var(--borde)) / 5.85),700px);
-  line-height:.94;letter-spacing:-.042em;
-  white-space:nowrap;margin:0 -.03em;
+  letter-spacing:-.042em;margin:0 -.03em;
 }
+/* Cada linea tiene su propio cuerpo para llegar a los dos bordes.
+   El divisor es el ancho de esa linea medido en em: si cambia el texto,
+   hay que recalcularlo. Mas letras, divisor mas alto. */
+.studio p span{display:block;white-space:nowrap;line-height:.86}
+.studio .l1{font-size:min(calc((100vw - 2 * var(--borde)) / 7),620px)}
+.studio .l2{font-size:min(calc((100vw - 2 * var(--borde)) / 4.35),620px)}
 
 /* ---------- contacto ---------- */
 .contacto{
@@ -253,7 +255,7 @@ a{color:inherit;text-decoration:none}
   .obra .etiqueta{grid-template-columns:1fr;gap:6px;padding-bottom:20px}
   .verticales{grid-template-columns:1fr;gap:20px;padding:44px var(--borde) 50px}
   .serie{gap:8px}
-  .studio{padding:18svh var(--borde)}
+  .studio{padding:11svh var(--borde)}
   .contacto{padding-top:62px;gap:40px}
 }
 @media(hover:none){
@@ -376,7 +378,10 @@ a{color:inherit;text-decoration:none}
   </section>
 
   <section class="studio" id="studio">
-    <p>UNFORGETTABLE BY DESIGN</p>
+    <p>
+      <span class="l1">UNFORGETTABLE</span>
+      <span class="l2">BY DESIGN</span>
+    </p>
   </section>
 
 </main>
